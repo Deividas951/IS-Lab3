@@ -11,25 +11,17 @@ c1 = 0.190909;   %0.192
 c2 = 0.872727;  %0.877
 % step
 n = 0.2;
-%% finding centers 
 [pks,locs,w,p] = findpeaks(d)
 pksCount = length(pks);
-c = zeros(1,pksCount)
-peaks = 1;
 for indx = 1:length(d)
-    if pksCount+1 == peaks
-        break;
-    elseif d(indx) == pks(peaks)
-            c(peaks) = x(indx)
-            peaks = peaks + 1;
-    end
+    if d == pks())
 end
 %% Network's response
 cycleCount = 0;
 for ind = 1:10000;
 for indx = 1:length(x)
-   f1_1 = exp(-(x(indx)-c(1))^2/(2*r1^2));
-   f2_1 = exp(-(x(indx)-c(2))^2/(2*r2^2));
+   f1_1 = exp(-(x(indx)-c1)^2/(2*r1^2));
+   f2_1 = exp(-(x(indx)-c2)^2/(2*r2^2));
    y = f1_1*w1+f2_1*w2+b;
    e = d(indx) - y;
    % Weight update
