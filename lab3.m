@@ -9,6 +9,7 @@ b = randn(1);
 % r2 = 0.126;
 % c1 = 0.190909; Good hand picked c values
 % c2 = 0.872727;
+
 % step
 n = 0.2;
 %% finding centers automatically
