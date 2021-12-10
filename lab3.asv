@@ -7,11 +7,10 @@ w2 = randn(1);
 b = randn(1);
 % r1 = 0.152; % Good hand picked r values
 % r2 = 0.126;
-c1 = 0.190909;   %0.192
-c2 = 0.872727;  %0.877
+% c1 = 0.190909; Good hand picked r values
+% c2 = 0.872727;
 % step
 n = 0.2;
-errorStep = 0.002
 %% finding centers automatically
 [pks,locs,w,p] = findpeaks(d)
 pksCount = length(pks);
@@ -33,8 +32,8 @@ cycleCount = 0;
        r1 = x(rc(1)+nc)-c(1);
        r2 = c(2) - x(rc(2)-nc);
        nc = nc+1;
-
-for ind = 1:10000;
+%% First 100 iteration using initilized r1 and r2 values
+for ind = 1:100;
 for indx = 1:length(x)
    f1_1 = exp(-(x(indx)-c(1))^2/(2*r1^2));
    f2_1 = exp(-(x(indx)-c(2))^2/(2*r2^2));
@@ -48,11 +47,13 @@ for indx = 1:length(x)
    cycleCount = cycleCount+1;
 end
 end
+%% More iteration, but modyfing r1 and r2 values until error is below 0.4
+for ind = 1:10;
 if e > 0.4
        r1 = x(rc(1)+nc)-c(1);
        r2 = c(2) - x(rc(2)-nc);
        nc = nc+1;
-for ind = 1:10000000000;
+for ind = 1:100;
 for indx = 1:length(x)
    f1_1 = exp(-(x(indx)-c(1))^2/(2*r1^2));
    f2_1 = exp(-(x(indx)-c(2))^2/(2*r2^2));
@@ -64,6 +65,7 @@ for indx = 1:length(x)
    b = b+n*e;
    % center update
    cycleCount = cycleCount+1;
+end
 end
 end
 end
